@@ -1,42 +1,23 @@
 <?php
+require_once 'Bicycle.php';
+require_once 'Car.php';
+require_once 'Truck.php';
 
-require 'Vehicle.php';
+$bicycle = new Bicycle('blue', 1);
 
-$Car = new Car('red', 2, 1);
+$cars = new Car ('blue',5,'diesel');
 
-echo 'Try n°1 : Park Brake unlock !';
-echo '<br/>';
+$truck1 = new Truck ('green', 2, 'fuel', 100);
 
-try 
-{
-    $Car->start(true);
-} 
-catch(Exception $e)
-{
-    $Car->setHasParkBrake(true);
-}
-finally
-{
-    echo '<br/>';
-    echo 'Ma voiture roule comme un donut';
-    echo '<br/>';
-}
-
-echo '<br/>';
-echo 'Try n°2 : Park Brake lock !';
-echo '<br/>';
-  
-
-try 
-{
-    $Car->start(false);
-} 
-catch(Exception $e)
-{
-    $Car->setHasParkBrake(true);
-    echo 'Park Brake Unlock ! <br/>';
-}
-finally
-{
-    echo 'Ma voiture roule comme un donut';
-}
+echo $truck1->load();
+echo $truck1->setLoading(99);
+echo '<br>';
+echo $truck1->load();
+echo $truck1->setLoading(100);
+echo '<br>';
+echo $truck1->load();
+echo '<br>';
+echo $truck1->forward();
+echo '<br> Vitesse du truck : ' . $truck1->getCurrentSpeed() . ' km/h' . '<br>';
+echo $truck1->brake();
+echo '<br> Vitesse du truck : ' . $truck1->getCurrentSpeed() . ' km/h' . '<br>';
